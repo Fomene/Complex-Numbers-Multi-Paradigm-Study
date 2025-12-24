@@ -4,7 +4,7 @@ Implantation des opérations de base sur les nombres complexes (addition, soustr
 
 ## Arborescence
 ```
-ProjetINFO3205IvanWistonTchindaFomeneRustGo/
+Complex-Numbers-Multi-Paradigm-Study/
 ├── README.md
 ├── rapport/
 │   └── main.tex
