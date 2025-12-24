@@ -1,0 +1,9 @@
+z1 = 5.00 + 0.00i
+z2 = -3.00 + 0.00i
+Addition       : 2.00 + 0.00i
+Soustraction   : 8.00 + 0.00i
+Multiplication : -15.00 + 0.00i
+Division       : -1.67 + 0.00i
+ConjuguǸ z1    : 5.00 + 0.00i
+ConjuguǸ z2    : -3.00 + 0.00i
+�%galitǸ z1=z2  : false

@@ -1,0 +1,325 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{caption}
+\usepackage{booktabs}
+
+
+
+\lstdefinestyle{common}{
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  commentstyle=\color{gray},
+  stringstyle=\color{red},
+  breaklines=true,
+  frame=single,
+  captionpos=b
+}
+% ---------- Common style ----------
+\lstdefinestyle{common}{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    stringstyle=\color{teal},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    numbersep=8pt,
+    breaklines=true,
+    showstringspaces=false,
+    tabsize=4
+}
+
+
+% ---------- GO ----------
+\lstdefinelanguage{Go}{
+  keywords={
+    func, package, import, return, if, else, for, range,
+    type, struct, var, const, go, chan, select, interface
+  },
+  sensitive=true,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]{"}
+}
+
+
+% ---------- RUST ----------
+\lstdefinelanguage{Rust}{
+  keywords={
+    fn, let, mut, struct, enum, impl, trait, pub, use, mod,
+    match, if, else, loop, while, for, in, return, crate, super, Self
+  },
+  sensitive=true,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]{"}
+}
+
+
+
+% Pour chaque langage, vous pouvez définir un style spécifique si nécessaire :
+\lstdefinestyle{go}{language=Go, style=common}
+\lstdefinestyle{rust}{language=Rust, style=common}
+
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Introduction}
+Ce projet a pour objectif de comparer deux langages de programmation selon deux paradigmes distincts, à travers l'implémentation d'un même problème : la gestion et l'arithmétique des nombres complexes.  
+Le problème consiste à implémenter les opérations usuelles : addition, soustraction, multiplication, division, conjugué, égalité et affichage. Je l'ai choisi car je maîtrise mathématiquement les nombres complexes.
+\begin{itemize}
+    \item \textbf{Go} (paradigme \textbf{procédural}) : Langage attribué pour son approche simple et explicite, idéal pour comprendre les bases de la programmation impérative. (15/20 Expérience modérée en programmation système)
+    \item \textbf{Rust} (paradigme \textbf{orienté objet}) : Langage attribué pour ses concepts avancés de sécurité mémoire et son système de types riche. (14/20 Connaissance théorique mais pratique limitée)
+\end{itemize}
+\clearpage
+
+\section{Analyse des langages}
+\subsection*{Go : Procédural}
+\begin{itemize}
+    \item \textbf{Paradigmes} : Impératif, procédural
+    \item \textbf{Typage} : Statique, fort, inférence automatique des types
+    \item \textbf{Gestion mémoire} : Garbage collector automatique
+    \item \textbf{Gestion erreurs} : Valeurs de retour multiples, pas d'exceptions
+    \item \textbf{Outils} : \texttt{go run}, \texttt{go build}, \texttt{go test}, formatteur intégré
+\end{itemize}
+
+\subsection*{Rust : Paradigme Orienté Objet}
+\begin{itemize}
+    \item \textbf{Paradigmes} : Orienté objet, fonctionnel, impératif
+    \item \textbf{Typage} : Statique, très fort, inférence avec sécurité mémoire garantie
+    \item \textbf{Gestion mémoire} : Ownership, emprunts, pas de GC, allocation sur la pile
+    \item \textbf{Gestion erreurs} : \texttt{Result<T,E>} et \texttt{Option<T>}, pas d'exceptions
+    \item \textbf{Outils} : \texttt{cargo}, \texttt{rustc}, système de crates riche
+\end{itemize}
+
+\clearpage
+
+\section{Comparaison}
+\subsection*{Tableau comparatif}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}p{2.5cm}p{3cm}p{3cm}p{3cm}@{}}
+\toprule
+\textbf{Aspect} & \textbf{Go} & \textbf{Rust}\\
+\midrule
+Paradigme & Procédural & Orienté objet \\
+Typage & Statique, fort & Statique, très fort \\
+Mémoire & Garbage collector & Ownership \\
+Surcharge opérateurs & Non & Oui \\
+Gestion erreurs & \texttt{error} return & \texttt{Result<T,E>} \\
+Performance & Native, rapide & Native, très rapide \\
+Expressivité & Modérée & Élevée \\
+Verbosite & Élevée & Modérée \\
+Courbe apprentissage & Douce & Raide \\
+Sécurité & Bonne & Excellente \\
+\bottomrule
+\end{tabular}
+\caption{Comparaison des deux langages et paradigmes}
+\end{table}
+
+\subsection*{Discussion comparative}
+Rust offre une abstraction plus puissante grâce aux traits et à la surcharge des opérateurs, ce qui rend l'écriture des opérations sur les complexes naturelle et mathématiquement intuitive. Go impose une approche plus explicite mais aussi plus simple : aucune magie du langage, tout est clair et prévisible.
+\noindent\textbf{Impact sur l'implémentation :}
+\begin{itemize}
+    \item \textbf{Go} : Structure procédurale naturelle, méthodes explicites, code verbeux mais très lisible
+    \item \textbf{Rust} : Architecture orientée objet élégante, opérateurs naturels, sécurité mémoire garantie
+\end{itemize}
+
+Ces différences montrent bien l'impact du paradigme sur la conception logicielle et la philosophie de chaque langage.
+
+\clearpage
+
+\section{Implémentations}
+\subsection*{Problème 1 : Nombres complexes}
+Le problème consiste à implémenter les nombres complexes avec les opérations arithmétiques de base.
+
+\noindent\textbf{Spécifications :}
+\begin{itemize}
+    \item \textbf{Entrée} : Quatre nombres flottants $a\ b$ puis $c\ d$ représentant $z_1 = a + bi$ et $z_2 = c + di$
+    \item \textbf{Sorties} : Affichage formaté de $z_1$, $z_2$, leurs opérations, conjugués, et égalité
+    \item \textbf{Contraintes} : Gestion robuste de la division par zéro, précision à deux décimales
+    \item \textbf{Opérations} : Addition, soustraction, multiplication, division, conjugué, égalité
+\end{itemize}
+
+\subsection*{Go — Paradigme Procédural}
+
+\noindent\textbf{Choix de conception :}
+\begin{itemize}
+    \item Structure simple avec champs exportés \texttt{Re} et \texttt{Im}
+    \item Méthodes explicites (\texttt{Add()}, \texttt{Sub()}, etc.) faute de surcharge
+    \item Gestion d'erreurs par \texttt{panic()} pour la division par zéro
+    \item Formatage d'affichage unifié via méthode \texttt{String()}
+\end{itemize}
+
+\begin{lstlisting}[style=go, caption={Structure Complex en Go}]
+type Complex struct {
+    Re float64
+    Im float64
+}
+
+func (z Complex) Add(other Complex) Complex {
+    return Complex{
+        Re: z.Re + other.Re,
+        Im: z.Im + other.Im,
+    }
+}
+func (z Complex) Div(other Complex) Complex {
+    denom := other.Re*other.Re + other.Im*other.Im
+    if denom == 0 {
+        panic("Erreur : division par un nombre complexe nul")
+    }
+    return Complex{
+        Re: (z.Re*other.Re + z.Im*other.Im) / denom,
+        Im: (z.Im*other.Re - z.Re*other.Im) / denom,
+    }
+}
+\end{lstlisting}
+
+\noindent\textbf{Exécution :}
+\begin{verbatim}
+go run . < ../tests/test1.in
+\end{verbatim}
+
+\subsection*{Rust — Paradigme Orienté Objet}
+
+\noindent\textbf{Choix de conception :}
+\begin{itemize}
+    \item Structure avec dérivation automatique de traits (\texttt{Debug}, \texttt{Copy}, \texttt{Clone})
+    \item Surcharge complète des opérateurs via les traits \texttt{std::ops}
+    \item Implémentation de \texttt{PartialEq} pour l'égalité structurelle
+    \item Gestion d'erreurs par \texttt{panic!()} avec messages explicites
+\end{itemize}
+
+\begin{lstlisting}[style=rust, caption={Structure Complex en Rust}]
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub struct Complex {
+    pub re: f64,
+    pub im: f64,
+}
+
+impl Add for Complex {
+    type Output = Complex;
+    fn add(self, other: Complex) -> Complex {
+        Complex {
+            re: self.re + other.re,
+            im: self.im + other.im,
+        }
+    }
+}
+
+impl Div for Complex {
+    type Output = Complex;
+    fn div(self, other: Complex) -> Complex {
+        let denom = other.re * other.re + other.im * other.im;
+        if denom == 0.0 {
+            panic!("Erreur : division par un nombre complexe nul");
+        }
+        Complex {
+            re: (self.re * other.re + self.im * other.im) / denom,
+            im: (self.im * other.re - self.re * other.im) / denom,
+        }
+    }
+}
+\end{lstlisting}
+
+\noindent\textbf{Exécution :}
+\begin{verbatim}
+cargo run --quiet < ../tests/test1.in
+\end{verbatim}
+
+\clearpage
+
+\section{Discussion}
+\subsection*{Difficultés rencontrées}
+
+\noindent\textbf{Go :}
+\begin{itemize}
+    \item \textbf{Verbosité} : L'absence de surcharge d'opérateurs impose des méthodes explicites répétitives
+    \item \textbf{Gestion d'erreurs} : Le système de retour d'erreurs est moins expressif que les exceptions
+    \item \textbf{Limitations} : Pas de génériques pour les types numériques, code moins réutilisable
+\end{itemize}
+
+\noindent\textbf{Rust :}
+\begin{itemize}
+    \item \textbf{Courbe d'apprentissage} : Comprendre le système d'ownership et les traits demande un investissement initial important
+    \item \textbf{Compilation} : Temps de compilation plus longs que Go, surtout avec les dépendances
+    \item \textbf{Complexité} : La syntaxe peut paraître dense pour les débutants
+\end{itemize}
+
+
+\subsection*{Comparaison des performances et expressivité}
+
+\noindent\textbf{Performance d'exécution :}
+\begin{itemize}
+    \item \textbf{Rust} : Compilation optimisée, exécution la plus rapide, gestion mémoire zero-cost
+    \item \textbf{Go} : Compilation rapide, exécution efficace, léger overhead du GC
+\end{itemize}
+
+\noindent\textbf{Expressivité et concision :}
+\begin{itemize}
+    \item \textbf{Rust} : Bon équilibre grâce à la surcharge d'opérateurs et au système de types riche
+    \item \textbf{Go} : Plus verbeux mais extrêmement clair et explicite
+\end{itemize}
+
+\subsection*{Expérience développeur}
+
+\noindent\textbf{Productivité :}
+\begin{itemize}
+    \item \textbf{Go} : Prise en main immédiate, idéal pour le prototypage rapide
+    \item \textbf{Rust} : Investissement initial important mais productivité élevée une fois la courbe franchie
+\end{itemize}
+
+\noindent\textbf{Maintenabilité :}
+\begin{itemize}
+    \item \textbf{Rust} : Sécurité garantie à la compilation, refactoring sécurisé
+    \item \textbf{Go} : Code simple et prévisible, facile à maintenir par plusieurs développeurs
+\end{itemize}
+
+\clearpage
+
+\section{Conclusion}
+Ce projet a démontré l'impact fondamental du paradigme de programmation sur la conception logicielle. Chaque langage apporte une philosophie distincte qui influence profondément l'approche de résolution de problèmes :
+
+\begin{itemize}
+    \item \textbf{Go} excelle par sa simplicité et son approche procédurale directe. Son absence de surcharge d'opérateurs, bien que verbieuse, garantit une transparence totale des opérations. Idéal pour les services backend et les équipes cherchant la maintenabilité.
+    
+    \item \textbf{Rust} impressionne par sa sécurité mémoire et ses performances. Son système de traits et la surcharge d'opérateurs permettent une expressivité élégante tout en garantissant la sécurité à la compilation. Parfait pour les systèmes critiques et les applications haute performance.
+    
+\end{itemize}
+
+La comparaison entre la surcharge d'opérateurs de Rust et l'approche explicite de Go a particulièrement illustré comment les choix de conception du langage influencent l'expressivité du code.
+
+\noindent\textbf{Recommandations par contexte :}
+\begin{itemize}
+    \item \textbf{Applications critiques (sécurité, performance)} : Rust
+    \item \textbf{Développement rapide et maintenable} : Go  
+    \item \textbf{Prototypage et scripts} : Go 
+\end{itemize}
+
+Ce projet a non seulement renforcé la compréhension des paradigmes de programmation, mais a également illustré comment le choix du langage doit s'adapter aux contraintes spécifiques du problème à résoudre.
+
+\clearpage
+
+\section*{Bibliographie}
+\begin{itemize}
+  \item \url{https://go.dev/doc/} 
+  \item \url{https://doc.rust-lang.org/} 
+  \item \url{https://en.cppreference.com/} 
+\end{itemize}
+
+\end{document}

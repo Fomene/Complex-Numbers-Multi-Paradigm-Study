@@ -1,0 +1,9 @@
+z1 = 1.00 + 2.00i
+z2 = 0.00 + 0.00i
+Addition       : 1.00 + 2.00i
+Soustraction   : 1.00 + 2.00i
+Multiplication : 0.00 + 0.00i
+Division       : erreur (division par un nombre complexe nul)
+Conjugué z1    : 1.00 + -2.00i
+Conjugué z2    : 0.00 + 0.00i
+Égalité z1=z2  : false

@@ -1,0 +1,9 @@
+z1 = 0.00 + 4.00i
+z2 = 0.00 + -2.00i
+Addition       : 0.00 + 2.00i
+Soustraction   : 0.00 + 6.00i
+Multiplication : 8.00 + 0.00i
+Division       : -2.00 + 0.00i
+Conjugué z1    : 0.00 + -4.00i
+Conjugué z2    : 0.00 + 2.00i
+Égalité z1=z2  : false
